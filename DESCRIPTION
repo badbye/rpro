@@ -1,0 +1,10 @@
+Package: rpro
+Type: Package
+Title: A Package for Running R Functions in Terminal
+Version: 0.1
+Date: 2016-02-03
+Author: yalei
+Maintainer: Yalei Du <yaleidu@163.com>
+Description: Makes running R function in terminal more convenient.
+License: GPL
+LazyData: TRUE

@@ -1,0 +1,45 @@
+#!/usr/bin/env Rscript
+
+local({
+  p = commandArgs(TRUE)
+  library(rpro)
+  # help ----------------------------------------
+  if (length(p) == 0L || p[1] %in% c('-h', '--help')) {
+    rpro_help()
+    q('no')
+  }
+  # run command ---------------------------------
+  commands = c('list', 'run') # , 'create', 'init', 'pkg')
+  if (p[1] %in% commands){
+    do.call(paste0('rpro_', p[1]), list(argv = p[-1]))
+    q('no')
+  }
+  msg = sprintf('Invalid command: %s', p[1])
+  stop(msg, call. = FALSE)
+})
+
+# # create -------------------------------------
+# if (p[1] == 'create') {
+#   do.call(rpro::rpro_create, args)
+#   q('no')
+# }
+# # init ---------------------------------------
+# if (p[1] == 'init') {
+#   do.call(rpro::rpro_init, args)
+#   q('no')
+# }
+# # list ---------------------------------------
+# if (p[1] == 'list') {
+#   do.call(rpro::rpro_list, args)
+#   q('no')
+# }
+# # run ----------------------------------------
+# if (p[1] == 'run') {
+#   do.call(rpro::rpro_run, args)
+#   q('no')
+# }
+# # pkg    -------------------------------------
+# if (p[1] == 'pkg') {
+#   do.call(rpro::rpro_pkg, args)
+#   q('no')
+# }
