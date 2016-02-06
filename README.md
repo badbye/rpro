@@ -26,7 +26,7 @@ echo "paste path in step 1" >> ~/.bashrc
 ```
 
 ### Windows
-Sorry, do not use Windows any more ~_~
+This package is written purely by R, so it supports Windows(Im sure). However, I do not know how to add PTAH since I do not use Windows a long time ago (~_~). Welcome to contribute!
 
 ## Usage
 After install `rpro` and add the environment path, you can run `rpro` as a command in the terminal directly.
