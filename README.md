@@ -41,7 +41,7 @@ After install `rpro` and add the environment path, you can run `rpro` as a comma
 Save the follwing codes in `test.R`.
 ```
 options(encoding = 'GBK')
-run_scrapy <- function(url, ...){
+run_ip <- function(url, ...){
   if (is.null(url)){
     return(cat('NO url\n'))
   }
@@ -53,10 +53,10 @@ run_scrapy <- function(url, ...){
 ```
 $ rpro list
 Search files match: [*.R$]; Search funcitons match: [^run]
-----> 1: test.R::run_scrapy
+----> 1: test.R::run_ip
 
 # return the address of your IP
-$rpro run test.R::run_scrapy -url http://ip.ws.126.net/ipquery  
+$ rpro run test.R::run_ip -url http://ip.ws.126.net/ipquery  
 ```
 
 ## TODO
