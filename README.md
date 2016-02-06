@@ -41,6 +41,8 @@ After install `rpro` and add the environment path, you can run `rpro` as a comma
 Save the follwing codes in `test.R`.
 ```
 options(encoding = 'GBK')
+
+# download web page
 run_ip <- function(url, ...){
   if (is.null(url)){
     return(cat('NO url\n'))
@@ -48,15 +50,43 @@ run_ip <- function(url, ...){
   res = readLines(url, ...)
   return(cat(res, '\n'))
 }
+
+# parse command line parameters
+run_arg <- function(...){
+  argvs = list(...)
+  arg_name = names(argvs)
+  if (length(arg_name) == 0){
+    return(message('No parameter offered.'))
+  }
+  arg_val = sapply(arg_name, function(x) argvs[[x]])
+  msg = sprintf('Paramter name: %-*s; Parameter value: %s',
+                max(nchar(arg_name)), arg_name, arg_val)
+  cat(msg, sep = '\n')
+}
 ```
 
 ```
 $ rpro list
 Search files match: [*.R$]; Search funcitons match: [^run]
-----> 1: test.R::run_ip
+----> 1: test.R::run_arg
+----> 2: test.R::run_scrapy
 
 # return the address of your IP
 $ rpro run test.R::run_ip -url http://ip.ws.126.net/ipquery  
+```
+
+In default, `rpro run` will add a `help` argument for the function(if you do not offer any parameters). So it is always recommended to prepare more arguments in your function(`...` in the script refers to more arguments).
+
+```
+$ rpro run test.R::run_arg
+Paramter name: help; Parameter value: 0
+```
+
+```
+$ rpro run test.R::run_arg -arg1 rpro -arg2 123 -arg3 third
+Paramter name: arg1; Parameter value: rpro
+Paramter name: arg2; Parameter value: 123
+Paramter name: arg3; Parameter value: third
 ```
 
 ## TODO
