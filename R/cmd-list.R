@@ -17,7 +17,10 @@ list_funcs <- function(path, fun_regexpr = '^run', env_name = 'rpro_project'){
   # load files in a new environment
   new_env = new.env()
   for (p in path){
-    source(p, local = new_env)
+    tryCatch(source(p, local = new_env),
+             warning = function(war){message(sprintf('File [%s] Warning: %s', p, war$message))},
+             error = function(err){message(sprintf('File [%s] Error: %s', p, err$message))}
+    )
   }
   attach(new_env, name=env_name)
   funcs = ls(env_name)
@@ -85,7 +88,7 @@ rpro_list <- function(argv = c()){
     rpro_list_help()
     q('no')
   }
-  path = ifelse(is.null(argv$path), '*_run.R$', argv$path)
+  path = ifelse(is.null(argv$path), '*.R$', argv$path)
   funreg = ifelse(is.null(argv$funreg), '^run', argv$funreg)
   cat(sprintf('Search files match: [%s]; Search funcitons match: [%s]\n',
               path, funreg))
@@ -101,7 +104,7 @@ rpro_list <- function(argv = c()){
   funcs = list_funcs(dirs, fun_regexpr = funreg)
   if (length(funcs) == 0){
     # stop('No function match!', call. = FALSE)
-    return(cat('No function match!'))
+    return(cat('No function match!\n'))
   }
   print_funcs(funcs)
 }
