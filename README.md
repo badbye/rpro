@@ -14,13 +14,15 @@ Add environment PATH(Run in terminal):
 ### OS & Linux
 
 (1) Find the path of package `rpro`
-```
-$ Rscript -e 'library(rpro);cat(path.package("rpro"), "bin", sep = "/")'
+
+```shell
+Rscript -e 'library(rpro);cat(path.package("rpro"), "bin", sep = "/")'
 ```
 
 (2) Add in PATH
-```
-$ echo "paste path in step 1" >> ~/.bashrc
+
+```shell
+echo "paste path in step 1" >> ~/.bashrc
 ```
 
 ### Windows
@@ -39,7 +41,8 @@ After install `rpro` and add the environment path, you can run `rpro` as a comma
 ### Example
 
 Save the follwing codes in `test.R`.
-```
+
+```R
 options(encoding = 'GBK')
 
 # download web page
@@ -65,28 +68,28 @@ run_arg <- function(...){
 }
 ```
 
-```
-$ rpro list
-Search files match: [*.R$]; Search funcitons match: [^run]
-----> 1: test.R::run_arg
-----> 2: test.R::run_scrapy
+```shell
+rpro list
+# Search files match: [*.R$]; Search funcitons match: [^run]
+# ----> 1: test.R::run_arg
+# ----> 2: test.R::run_scrapy
 
 # return the address of your IP
-$ rpro run test.R::run_ip -url http://ip.ws.126.net/ipquery  
+rpro run test.R::run_ip -url http://ip.ws.126.net/ipquery  
 ```
 
 In default, `rpro run` will add a `help` argument for the function(if you do not offer any parameters). So it is always recommended to prepare more arguments in your function(`...` in the script refers to more arguments).
 
-```
-$ rpro run test.R::run_arg
-Paramter name: help; Parameter value: 0
+```shell
+rpro run test.R::run_arg
+# Paramter name: help; Parameter value: 0
 ```
 
-```
-$ rpro run test.R::run_arg -arg1 rpro -arg2 123 -arg3 third
-Paramter name: arg1; Parameter value: rpro
-Paramter name: arg2; Parameter value: 123
-Paramter name: arg3; Parameter value: third
+```shell
+rpro run test.R::run_arg -arg1 rpro -arg2 123 -arg3 third
+# Paramter name: arg1; Parameter value: rpro
+# Paramter name: arg2; Parameter value: 123
+# Paramter name: arg3; Parameter value: third
 ```
 
 ## TODO
