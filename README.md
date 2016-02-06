@@ -6,7 +6,7 @@ Run R function in terminal quickly
 
 Install from github:
 ```R
-devtools::install('badbye/rpro')
+devtools::install_github('badbye/rpro')
 ```
 
 Add environment PATH(Run in terminal):
